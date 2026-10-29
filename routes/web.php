@@ -57,6 +57,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
 });
 
-Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
