@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Panduan Pengguna - Toko Sabar Subur</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+    @bottom-center {
+      content: "Panduan Pengguna Toko Sabar Subur  |  Halaman " counter(page) " dari " counter(pages);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 8pt;
+      color: #9ca3af;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 140px;
+  }
+  .cover .logo-box {
+    width: 92px; height: 92px;
+    background: #7c3aed;
+    color: #fff;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-size: 30pt;
+    margin: 0 0 6px 0;
+    color: #111827;
+    letter-spacing: -0.5px;
+  }
+  .cover h2 {
+    font-size: 15pt;
+    font-weight: 500;
+    color: #7c3aed;
+    margin: 0 0 40px 0;
+  }
+  .cover p.desc {
+    max-width: 420px;
+    margin: 0 auto 60px auto;
+    color: #6b7280;
+    font-size: 11pt;
+  }
+  .cover .meta {
+    display: inline-block;
+    text-align: left;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 26px;
+    font-size: 10pt;
+    color: #374151;
+  }
+  .cover .meta b { color: #111827; }
+
+  /* ===== TOC ===== */
+  .toc { page-break-after: always; }
+  .toc h2 { border: none; padding-bottom: 0; }
+  .toc ol { list-style: none; padding-left: 0; counter-reset: toc; }
+  .toc li {
+    counter-increment: toc;
+    padding: 7px 0;
+    border-bottom: 1px dotted #d1d5db;
+    font-size: 11pt;
+  }
+  .toc li::before {
+    content: counter(toc) ".";
+    color: #7c3aed;
+    font-weight: 700;
+    display: inline-block;
+    width: 34px;
+  }
+
+  /* ===== HEADINGS ===== */
+  h2.chapter {
+    page-break-before: always;
+    font-size: 17pt;
+    color: #111827;
+    border-bottom: 3px solid #7c3aed;
+    padding-bottom: 8px;
+    margin: 0 0 16px 0;
+  }
+  h2.chapter .num {
+    color: #7c3aed;
+    margin-right: 10px;
+  }
+  h2.first { page-break-before: avoid; }
+  h3 {
+    font-size: 12.5pt;
+    color: #1f2937;
+    margin: 22px 0 8px 0;
+  }
+  h4 {
+    font-size: 11pt;
+    margin: 16px 0 6px 0;
+    color: #374151;
+  }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px 0;
+    font-size: 9.5pt;
+  }
+  th {
+    background: #ede9fe;
+    color: #4c1d95;
+    text-align: left;
+    padding: 7px 10px;
+    border: 1px solid #ddd6fe;
+  }
+  td {
+    padding: 6px 10px;
+    border: 1px solid #e5e7eb;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #fafafa; }
+  tr { page-break-inside: avoid; }
+  code, kbd {
+    font-family: Consolas, 'Courier New', monospace;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 9pt;
+    color: #6d28d9;
+  }
+  kbd { color: #111827; }
+
+  /* ===== CALLOUTS ===== */
+  .callout {
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 9.8pt;
+    page-break-inside: avoid;
+  }
+  .callout b.label { display: block; margin-bottom: 3px; }
+  .info    { background: #eff6ff; border-left: 4px solid #3b82f6; }
+  .info b.label { color: #1d4ed8; }
+  .tip     { background: #f0fdf4; border-left: 4px solid #22c55e; }
+  .tip b.label { color: #15803d; }
+  .warning { background: #fffbeb; border-left: 4px solid #f59e0b; }
+  .warning b.label { color: #b45309; }
+  .danger  { background: #fef2f2; border-left: 4px solid #ef4444; }
+  .danger b.label { color: #b91c1c; }
+
+  /* ===== STEPS ===== */
+  ol.steps { counter-reset: step; list-style: none; padding-left: 0; margin: 8px 0 14px 0; }
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 10px 40px;
+    page-break-inside: avoid;
+  }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 1px;
+    width: 24px; height: 24px;
+    background: #7c3aed;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+
+  ul { margin: 6px 0 12px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+
+  .menu-path {
+    display: inline-block;
+    background: #111827;
+    color: #fff;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .footer-note {
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 8.5pt;
+    color: #9ca3af;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  <div class="logo-box">&#128184;</div>
+  <h1>Toko Sabar Subur</h1>
+  <h2>Panduan Pengguna (User Guide)</h2>
+  <p class="desc">Aplikasi Kasir / Point of Sale (POS) untuk pencatatan penjualan, pengelolaan produk &amp; kategori, manajemen stok, serta laporan transaksi.</p>
+  <div class="meta">
+    <p><b>Dokumen:</b> Panduan Pengguna</p>
+    <p><b>Aplikasi:</b> Toko Sabar Subur &mdash; Kasir App</p>
+    <p><b>Versi Dokumen:</b> 2.0</p>
+    <p><b>Tanggal:</b> 26 Agustus 2026</p>
+  </div>
+</div>
+
+<!-- ================= TOC ================= -->
+<div class="toc">
+  <h2 class="chapter first" style="page-break-before:avoid;">Daftar Isi</h2>
+  <ol>
+    <li>Tentang Aplikasi</li>
+    <li>Memulai &mdash; Login dan Logout</li>
+    <li>Dashboard</li>
+    <li>Manajemen Kategori</li>
+    <li>Manajemen Satuan</li>
+    <li>Manajemen Produk</li>
+    <li>Transaksi Penjualan (Kasir / POS)</li>
+    <li>Struk Pembayaran</li>
+    <li>Riwayat Transaksi</li>
+    <li>Stock Opname</li>
+    <li>Rekap Penjualan (Laporan)</li>
+    <li>Manajemen User</li>
+    <li>Pengaturan Aplikasi</li>
+    <li>Tips &amp; Troubleshooting</li>
+  </ol>
+</div>
+
+<!-- ================= BAB 1 ================= -->
+<h2 class="chapter"><span class="num">1.</span>Tentang Aplikasi</h2>
+<p><b>Toko Sabar Subur</b> adalah aplikasi kasir (Point of Sale) berbasis web yang membantu Anda mengelola operasional toko sehari-hari, mulai dari data produk, proses penjualan di kasir, pengelolaan stok, hingga laporan transaksi.</p>
+
+<h3>Fitur Utama</h3>
+<table>
+  <tr><th style="width:32%;">Fitur</th><th>Keterangan</th></tr>
+  <tr><td><b>Dashboard</b></td><td>Ringkasan statistik toko: jumlah produk, jumlah kategori, jumlah transaksi hari ini, pendapatan hari ini, produk terlaris, dan transaksi terbaru.</td></tr>
+  <tr><td><b>Kasir (POS)</b></td><td>Layar penjualan cepat: cari/scan produk, keranjang belanja, multi-satuan/tier harga, hitung uang kembalian otomatis, dan cetak struk.</td></tr>
+  <tr><td><b>Manajemen Kategori</b></td><td>Mengelompokkan produk ke dalam kategori (tambah, ubah, hapus).</td></tr>
+  <tr><td><b>Manajemen Satuan</b></td><td>Mengelola satuan produk: pcs, dus, box, dll. Mendukung multi-satuan per produk.</td></tr>
+  <tr><td><b>Manajemen Produk</b></td><td>Mengelola data produk: kode, nama, barcode, kategori, stok, harga beli, harga jual, multi-satuan, dan import Excel/CSV.</td></tr>
+  <tr><td><b>Riwayat Transaksi</b></td><td>Mencari dan memfilter transaksi, melihat kembali struk, serta menghapus transaksi (stok otomatis dikembalikan).</td></tr>
+  <tr><td><b>Stock Opname</b></td><td>Pencatatan fisik stok vs stok sistem dengan koreksi otomatis.</td></tr>
+  <tr><td><b>Rekap Penjualan</b></td><td>Laporan omzet, laba kotor, rekap per hari/per kasir, produk terlaris, dengan export CSV dan cetak.</td></tr>
+  <tr><td><b>Manajemen User</b></td><td>Mengelola akun pengguna/kasir (tambah, ubah, hapus).</td></tr>
+  <tr><td><b>Pengaturan</b></td><td>Konfigurasi nama/alamat/telp toko, ukuran kertas struk, dan toggle fitur stok.</td></tr>
+</table>
+
+<h3>Cara Mengakses Aplikasi</h3>
+<ol class="steps">
+  <li>Buka browser (Chrome, Edge, atau Firefox).</li>
+  <li>Ketik alamat aplikasi pada kolom URL, misalnya <code>http://localhost:8000</code> (sesuaikan dengan alamat server toko Anda).</li>
+  <li>Halaman akan otomatis mengarahkan Anda ke halaman <b>Login</b>.</li>
+</ol>
+<div class="callout info">
+  <b class="label">INFO</b>
+  Aplikasi paling nyaman digunakan pada komputer/laptop dengan layar lebar karena menu ditampilkan dalam bentuk sidebar di sisi kiri.
+</div>
+
+<!-- ================= BAB 2 ================= -->
+<h2 class="chapter"><span class="num">2.</span>Memulai &mdash; Login dan Logout</h2>
+
+<h3>2.1 Login</h3>
+<ol class="steps">
+  <li>Buka aplikasi, Anda akan dibawa ke halaman login dengan tulisan <i>&ldquo;Silakan login untuk melanjutkan&rdquo;</i>.</li>
+  <li>Masukkan <b>Email</b> akun Anda.</li>
+  <li>Masukkan <b>Password</b> akun Anda.</li>
+  <li>(Opsional) Centang <b>&ldquo;Ingat saya&rdquo;</b> agar tetap masuk meskipun browser ditutup.</li>
+  <li>Klik tombol <b>Login</b>.</li>
+</ol>
+
+<div class="callout warning">
+  <b class="label">PERHATIAN</b>
+  Akun bawaan (default) dari aplikasi ini adalah <code>admin@kasir.com</code> dengan password <code>password</code>. Segera ganti password default setelah aplikasi digunakan, dan jangan bagikan kredensial kepada pelanggan/pihak lain.
+</div>
+
+<h3>2.2 Jika Lupa Password</h3>
+<ul>
+  <li>Klik tautan <b>&ldquo;Forgot Your Password?&rdquo;</b> di halaman login, lalu ikuti instruksi reset password melalui email (fitur harus dikonfigurasi oleh admin/pengembang terlebih dahulu).</li>
+  <li>Jika fitur email belum aktif, hubungi administrator untuk mereset password langsung dari database/server.</li>
+</ul>
+
+<h3>2.3 Logout</h3>
+<ol class="steps">
+  <li>Lihat bagian <b>bawah sidebar kiri</b>; nama akun Anda yang sedang login ditampilkan di sana.</li>
+  <li>Klik tombol <b>Logout</b> (berwarna merah saat disentuh kursor).</li>
+  <li>Anda akan keluar dari aplikasi dan kembali ke halaman login.</li>
+</ol>
+<div class="callout tip">
+  <b class="label">TIPS</b>
+  Selalu logout setiap kali selesai bekerja, terutama pada komputer kasir yang dipakai bersama, agar data transaksi tetap aman.
+</div>
+
+<!-- ================= BAB 3 ================= -->
+<h2 class="chapter"><span class="num">3.</span>Dashboard</h2>
+<p>Menu <span class="menu-path">DASHBOARD</span> adalah halaman pertama setelah login. Halaman ini menampilkan ringkasan kondisi toko secara real-time.</p>
+
+<h3>3.1 Kartu Statistik</h3>
+<table>
+  <tr><th style="width:35%;">Kartu</th><th>Arti</th></tr>
+  <tr><td><b>Total Produk</b></td><td>Jumlah seluruh produk yang terdaftar.</td></tr>
+  <tr><td><b>Total Kategori</b></td><td>Jumlah kategori produk yang terdaftar.</td></tr>
+  <tr><td><b>Transaksi Hari Ini</b></td><td>Jumlah transaksi penjualan yang terjadi pada tanggal hari ini.</td></tr>
+  <tr><td><b>Pendapatan Hari Ini</b></td><td>Total nilai penjualan (rupiah) yang berhasil pada hari ini.</td></tr>
+  <tr><td><b>Stok Habis</b></td><td>Jumlah produk yang stoknya sudah 0.</td></tr>
+</table>
+
+<h3>3.2 Tabel Ringkasan</h3>
+<ul>
+  <li><b>Produk Terlaris</b> &mdash; 5 produk dengan penjualan terbanyak (kolom: Produk dan jumlah Terjual). Jika belum ada penjualan, tampil teks <i>&ldquo;Belum ada data penjualan&rdquo;</i>.</li>
+  <li><b>Transaksi Terbaru</b> &mdash; 10 transaksi terakhir beserta nomor transaksi, waktu, dan totalnya. Jika kosong, tampil teks <i>&ldquo;Belum ada transaksi&rdquo;</i>.</li>
+</ul>
+<div class="callout tip">
+  <b class="label">TIPS</b>
+  Periksa Dashboard setiap pagi hari untuk memantau performa toko dan memastikan data produk sudah lengkap sebelum jam operasional.
+</div>
+
+<!-- ================= BAB 4 ================= -->
+<h2 class="chapter"><span class="num">4.</span>Manajemen Kategori</h2>
+<p>Menu <span class="menu-path">KATEGORI</span> digunakan untuk mengelompokkan produk, misalnya: Makanan, Minuman, Sembako, Rokok, dll.</p>
+
+<h3>4.1 Melihat Daftar Kategori</h3>
+<ul>
+  <li>Tabel menampilkan: <b>No</b>, <b>Nama Kategori</b>, <b>Deskripsi</b>, jumlah <b>produk</b> dalam kategori (badge biru), dan kolom <b>Aksi</b>.</li>
+  <li>Data ditampilkan 10 baris per halaman; gunakan tombol paginasi di bawah tabel untuk berpindah halaman.</li>
+</ul>
+
+<h3>4.2 Menambah Kategori</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;+ Tambah Kategori&rdquo;</b> di kanan atas.</li>
+  <li>Isi <b>Nama Kategori</b> (wajib, maksimal 255 karakter).</li>
+  <li>Isi <b>Deskripsi</b> (opsional).</li>
+  <li>Klik <b>Simpan</b>. Notifikasi hijau <i>&ldquo;Kategori berhasil ditambahkan&rdquo;</i> akan muncul.</li>
+</ol>
+
+<h3>4.3 Mengubah Kategori</h3>
+<ol class="steps">
+  <li>Di tabel daftar kategori, klik ikon <b>pensil (kuning)</b> pada baris yang ingin diubah.</li>
+  <li>Perbarui data yang diperlukan.</li>
+  <li>Klik <b>Update</b>. Notifikasi <i>&ldquo;Kategori berhasil diupdate&rdquo;</i> akan muncul.</li>
+</ol>
+
+<h3>4.4 Menghapus Kategori</h3>
+<ol class="steps">
+  <li>Klik ikon <b>tempat sampah (merah)</b> pada baris kategori yang ingin dihapus.</li>
+  <li>Konfirmasi dengan <b>OK</b> pada dialog <i>&ldquo;Yakin hapus kategori ini?&rdquo;</i>.</li>
+</ol>
+<div class="callout danger">
+  <b class="label">PENTING &mdash; HATI-HATI!</b>
+  Menghapus kategori juga akan <b>menghapus seluruh produk</b> yang berada di dalam kategori tersebut. Pastikan kategori sudah tidak memiliki produk (atau produk sudah dipindahkan) sebelum menghapus.
+</div>
+
+<!-- ================= BAB 5 ================= -->
+<h2 class="chapter"><span class="num">5.</span>Manajemen Satuan</h2>
+<p>Menu <span class="menu-path">SATUAN</span> digunakan untuk mengelola satuan produk, misalnya: pcs, dus, box, pack, dll. Satuan ini digunakan saat menambah/edit produk dan saat transaksi di kasir.</p>
+
+<h3>5.1 Melihat Daftar Satuan</h3>
+<ul>
+  <li>Tabel menampilkan: <b>No</b>, <b>Nama Satuan</b>, jumlah <b>produk</b> yang menggunakan satuan (badge biru), dan kolom <b>Aksi</b>.</li>
+  <li>Data ditampilkan 10 baris per halaman.</li>
+</ul>
+
+<h3>5.2 Menambah Satuan</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;+ Tambah Satuan&rdquo;</b>.</li>
+  <li>Isi <b>Nama Satuan</b> (wajib, maksimal 50 karakter, harus unik).</li>
+  <li>Klik <b>Simpan</b>.</li>
+</ol>
+
+<h3>5.3 Mengubah Satuan</h3>
+<ol class="steps">
+  <li>Klik ikon <b>pensil (kuning)</b> pada baris satuan yang ingin diubah.</li>
+  <li>Perbarui nama satuan.</li>
+  <li>Klik <b>Update</b>.</li>
+</ol>
+
+<h3>5.4 Menghapus Satuan</h3>
+<ol class="steps">
+  <li>Klik ikon <b>tempat sampah (merah)</b> pada baris satuan.</li>
+  <li>Konfirmasi penghapusan.</li>
+</ol>
+<div class="callout warning">
+  <b class="label">PERHATIAN</b>
+  Satuan <b>tidak bisa dihapus</b> jika masih digunakan oleh produk. Ubah atau hapus produk terlebih dahulu sebelum menghapus satuan.
+</div>
+
+<!-- ================= BAB 6 ================= -->
+<h2 class="chapter"><span class="num">6.</span>Manajemen Produk</h2>
+<p>Menu <span class="menu-path">PRODUK</span> digunakan untuk mengelola seluruh barang yang dijual di toko.</p>
+
+<h3>6.1 Melihat &amp; Mencari Produk</h3>
+<ul>
+  <li>Tabel menampilkan: <b>No</b>, <b>Kode</b>, <b>Nama Produk</b>, <b>Kategori</b>, <b>Stok</b>, <b>Harga Beli</b>, <b>Harga Jual</b>, dan <b>Aksi</b>.</li>
+  <li>Data ditampilkan 15 baris per halaman.</li>
+  <li>Gunakan kotak <b>pencarian</b> untuk mencari berdasarkan nama atau kode produk.</li>
+  <li>Gunakan dropdown <b>kategori</b> untuk memfilter produk per kategori, lalu klik tombol kaca pembesar.</li>
+</ul>
+
+<h3>Indikator Warna Stok</h3>
+<table>
+  <tr><th style="width:25%;">Kondisi Stok</th><th>Tampilan</th><th>Arti</th></tr>
+  <tr><td>Stok = 0</td><td>Badge merah <b>&ldquo;Habis&rdquo;</b></td><td>Produk tidak bisa dijual; segera lakukan restock.</td></tr>
+  <tr><td>Stok &le; 5</td><td>Angka kuning</td><td>Stok menipis; siapkan pengadaan barang.</td></tr>
+  <tr><td>Stok &gt; 5</td><td>Angka hijau</td><td>Stok aman.</td></tr>
+</table>
+
+<h3>6.2 Menambah Produk</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;+ Tambah Produk&rdquo;</b>.</li>
+  <li>Lengkapi form berikut:
+    <table>
+      <tr><th style="width:28%;">Field</th><th style="width:18%;">Wajib?</th><th>Keterangan</th></tr>
+      <tr><td><b>Kategori</b></td><td>Ya</td><td>Pilih kategori produk dari dropdown.</td></tr>
+      <tr><td><b>Kode Produk</b></td><td>Ya</td><td>Kode unik, maks. 50 karakter (boleh barcode/EAN). Tidak boleh sama dengan produk lain.</td></tr>
+      <tr><td><b>Nama Produk</b></td><td>Ya</td><td>Nama barang yang tampil di kasir.</td></tr>
+      <tr><td><b>Barcode</b></td><td>Tidak</td><td>Kode barcode produk (opsional). Digunakan untuk scan di kasir.</td></tr>
+      <tr><td><b>Stok</b></td><td>Ya</td><td>Jumlah stok awal, angka bulat minimal 0.</td></tr>
+      <tr><td><b>Harga Beli</b></td><td>Ya</td><td>Harga modal dari supplier (kelipatan 100).</td></tr>
+      <tr><td><b>Harga Jual</b></td><td>Ya</td><td>Harga jual ke pembeli (kelipatan 100).</td></tr>
+    </table>
+  </li>
+  <li><b>Multi-Satuan / Tier Harga</b> (opsional): Tambahkan satuan tambahan dengan menentukan konversi dan harga jual per satuan. Contoh: 1 box = 12 pcs, harga jual per box = Rp 50.000.</li>
+  <li>Klik <b>Simpan</b>. Notifikasi <i>&ldquo;Produk berhasil ditambahkan&rdquo;</i> akan muncul.</li>
+</ol>
+
+<h3>6.3 Import Produk dari Excel / CSV</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;Import&rdquo;</b> di halaman produk.</li>
+  <li>Unduh <b>template</b> yang tersedia untuk melihat format kolom yang benar.</li>
+  <li>Isi template dengan data produk Anda. Kolom: <code>kode_produk</code>, <code>nama_produk</code>, <code>kategori</code>, <code>satuan</code>, <code>barcode</code>, <code>stok</code>, <code>harga_beli</code>, <code>harga_jual</code>.</li>
+  <li>Unggah file .xlsx atau .csv (maksimal 5 MB).</li>
+  <li>Centang <b>&ldquo;Perbarui produk yang sudah ada&rdquo;</b> jika ingin memperbarui data produk berdasarkan kode.</li>
+  <li>Klik <b>Import</b>.</li>
+</ol>
+<div class="callout info">
+  <b class="label">INFO</b>
+  Kategori dan satuan baru akan <b>otomatis dibuat</b> jika belum ada saat import. Anda tidak perlu membuatnya terlebih dahulu.
+</div>
+
+<h3>6.4 Mengubah Produk</h3>
+<ol class="steps">
+  <li>Klik ikon <b>pensil</b> pada baris produk.</li>
+  <li>Ubah data yang diperlukan (misalnya menambah stok setelah menerima kiriman barang).</li>
+  <li>Klik <b>Update</b>.</li>
+</ol>
+
+<h3>6.5 Menghapus Produk</h3>
+<ol class="steps">
+  <li>Klik ikon <b>tempat sampah</b> pada baris produk.</li>
+  <li>Konfirmasi dengan <b>OK</b> pada dialog <i>&ldquo;Yakin hapus produk ini?&rdquo;</i>.</li>
+</ol>
+<div class="callout warning">
+  <b class="label">PERHATIAN</b>
+  Penghapusan produk bersifat permanen. Jika riwayat transaksi masih membutuhkan data produk tersebut, sebaiknya gunakan cara lain (misalnya set stok = 0) daripada menghapus.
+</div>
+
+<!-- ================= BAB 7 ================= -->
+<h2 class="chapter"><span class="num">7.</span>Transaksi Penjualan (Kasir / POS)</h2>
+<p>Menu <span class="menu-path">KASIR</span> adalah layar utama untuk melayani pembeli. Halaman terbagi dua panel: <b>katalog produk</b> (kiri) dan <b>keranjang</b> (kanan).</p>
+
+<h3>7.1 Alur Penjualan</h3>
+<ol class="steps">
+  <li><b>Cari produk</b> &mdash; klik kotak pencarian di panel kiri, lalu scan barcode (atau ketik kode/nama produk). Daftar produk tersaring otomatis saat Anda mengetik.</li>
+  <li><b>Scan barcode via kamera</b> &mdash; klik tombol <b>barcode</b> untuk mengaktifkan kamera perangkat, lalu arahkan ke barcode produk. Fitur ini menggunakan html5-qrcode.</li>
+  <li><b>Filter kategori</b> (opsional) &mdash; klik salah satu tombol pil kategori (mis. <i>Semua</i>, <i>Minuman</i>) untuk menampilkan hanya produk kategori tersebut.</li>
+  <li><b>Masukkan ke keranjang</b> &mdash; klik kartu produk sekali untuk menambah 1 item ke keranjang di panel kanan. Klik lagi untuk menambah quantity.</li>
+  <li><b>Atur jumlah</b> &mdash; gunakan tombol <kbd>+</kbd> / <kbd>&minus;</kbd> pada item keranjang. Tombol <kbd>&minus;</kbd> saat jumlah = 1 akan menghapus item. Tautan <b>Hapus</b> menghilangkan item dari keranjang.</li>
+  <li><b>Pilih satuan jual</b> &mdash; jika produk memiliki multi-satuan, pilih satuan yang diinginkan pada dropdown di keranjang. Harga akan menyesuaikan otomatis.</li>
+  <li><b>Masukkan uang bayar</b> &mdash; ketik nominal uang yang diberikan pembeli pada field <b>Bayar</b>. Kolom <b>Kembalian</b> terhitung otomatis (hijau = cukup, merah = uang kurang).</li>
+  <li><b>Klik Bayar</b> &mdash; transaksi disimpan dan Anda langsung diarahkan ke halaman struk.</li>
+</ol>
+
+<h3>7.2 Ketentuan Saat Transaksi</h3>
+<ul>
+  <li>Hanya produk dengan <b>stok lebih dari 0</b> yang tampil di katalog kasir.</li>
+  <li>Quantity tidak bisa melebihi stok yang tersedia; sistem menampilkan peringatan <i>&ldquo;Stok tidak mencukupi!&rdquo;</i>.</li>
+  <li>Tombol <b>Bayar</b> hanya aktif jika keranjang tidak kosong.</li>
+  <li>Jika uang bayar kurang dari total, muncul pesan <i>&ldquo;Jumlah bayar kurang!&rdquo;</i> dan transaksi tidak diproses.</li>
+  <li>Nomor transaksi dibuat otomatis dengan format <code>TRX-YYYYMMDD-NNNNN</code>, contoh: <code>TRX-20260821-00042</code>.</li>
+  <li>Setelah transaksi berhasil, <b>stok produk otomatis berkurang</b> sesuai jumlah yang terjual.</li>
+</ul>
+<div class="callout tip">
+  <b class="label">TIPS</b>
+  Untuk input uang yang cepat, ketik angka tanpa titik/koma, misalnya <code>50000</code> untuk Rp 50.000. Gunakan tombol <kbd>Tab</kbd> untuk berpindah cepat antar kolom.
+</div>
+
+<!-- ================= BAB 8 ================= -->
+<h2 class="chapter"><span class="num">8.</span>Struk Pembayaran</h2>
+<p>Setelah klik <b>Bayar</b>, halaman struk ditampilkan otomatis. Struk juga dapat dibuka kembali dari menu Riwayat Transaksi.</p>
+
+<h3>8.1 Isi Struk</h3>
+<ul>
+  <li>Nama toko (<b>Toko Sabar Subur</b>) &mdash; dapat diubah di menu Pengaturan.</li>
+  <li>Nomor transaksi, tanggal &amp; waktu, dan nama kasir yang melayani</li>
+  <li>Rincian item: nama produk, satuan, harga satuan, jumlah, dan subtotal</li>
+  <li><b>Total</b> belanja, <b>Bayar</b>, dan <b>Kembalian</b></li>
+</ul>
+
+<h3>8.2 Mencetak Struk</h3>
+<ol class="steps">
+  <li>Pastikan printer struk sudah terpasang dan menyala.</li>
+  <li>Klik tombol <b>&ldquo;Cetak Struk&rdquo;</b> di bagian bawah struk.</li>
+  <li>Dialog cetak browser akan muncul &mdash; pilih printer, lalu klik <b>Print</b>.</li>
+  <li>Klik <b>&ldquo;Kembali ke Kasir&rdquo;</b> untuk melayani pembeli berikutnya.</li>
+</ol>
+
+<h3>8.3 Struk ESC/POS (Printer Thermal)</h3>
+<ol class="steps">
+  <li>Pada halaman struk, klik tombol <b>&ldquo;Unduh Struk (.bin)&rdquo;</b>.</li>
+  <li>File <code>.bin</code> dengan format ESC/POS akan terunduh.</li>
+  <li>Kirim file ke printer thermal menggunakan perintah:
+    <p style="margin:6px 0 0 20px;"><code>copy /b struk-TRX.bin \\localhost\NamaPrinter</code></p>
+  </li>
+</ol>
+<div class="callout info">
+  <b class="label">INFO</b>
+  Struk juga bisa dicetak ulang kapan saja melalui menu <b>Riwayat Transaksi</b> tanpa mempengaruhi stok maupun laporan.
+</div>
+
+<!-- ================= BAB 9 ================= -->
+<h2 class="chapter"><span class="num">9.</span>Riwayat Transaksi</h2>
+<p>Menu <span class="menu-path">RIWAYAT TRANSAKSI</span> menyimpan seluruh catatan penjualan yang pernah dilakukan.</p>
+
+<h3>9.1 Membaca Tabel</h3>
+<ul>
+  <li>Kolom yang tersedia: <b>No. Transaksi</b>, <b>Tanggal</b>, <b>Kasir</b>, <b>Total</b>, <b>Bayar</b>, <b>Kembalian</b>, dan <b>Aksi</b>.</li>
+  <li>Data diurutkan dari transaksi terbaru, 15 baris per halaman.</li>
+</ul>
+
+<h3>9.2 Mencari &amp; Memfilter</h3>
+<ul>
+  <li><b>Cari nomor transaksi</b> &mdash; ketik nomor (atau sebagiannya) pada kolom pencarian, contoh: <code>TRX-20260821</code>.</li>
+  <li><b>Filter tanggal</b> &mdash; pilih tanggal pada kolom filter untuk menampilkan transaksi hanya pada tanggal tersebut.</li>
+  <li>Kombinasikan keduanya untuk hasil lebih spesifik, misalnya mencari satu struk pada tanggal tertentu.</li>
+</ul>
+
+<h3>9.3 Melihat / Mencetak Ulang Struk</h3>
+<ol class="steps">
+  <li>Klik ikon <b>mata / struk (biru)</b> pada baris transaksi.</li>
+  <li>Halaman struk terbuka; klik <b>Cetak Struk</b> bila perlu mencetak ulang.</li>
+</ol>
+
+<h3>9.4 Menghapus Transaksi (Void)</h3>
+<ol class="steps">
+  <li>Klik ikon <b>tempat sampah (merah)</b> pada baris transaksi yang salah.</li>
+  <li>Konfirmasi penghapusan.</li>
+  <li>Transaksi dihapus dan <b>stok produk otomatis dikembalikan</b> seperti semula.</li>
+</ol>
+<div class="callout danger">
+  <b class="label">PENTING</b>
+  Gunakan fitur hapus transaksi hanya untuk pembatalan (void) yang sah, misalnya salah input kasir. Semua pembatalan sebaiknya dicatat manual oleh pemilik toko untuk audit keuangan.
+</div>
+
+<!-- ================= BAB 10 ================= -->
+<h2 class="chapter"><span class="num">10.</span>Stock Opname</h2>
+<p>Menu <span class="menu-path">STOCK OPNAME</span> digunakan untuk melakukan pencatatan stok fisik dan membandingkannya dengan stok sistem. Fitur ini hanya muncul di sidebar jika <b>fitur stok aktif</b> (dapat diaktifkan di menu Pengaturan).</p>
+
+<h3>10.1 Melihat Daftar Stock Opname</h3>
+<ul>
+  <li>Tabel menampilkan: <b>No</b>, <b>No. Opname</b>, <b>Tanggal</b>, <b>Kasir</b>, <b>Catatan</b>, dan <b>Aksi</b>.</li>
+  <li>No. opname dibuat otomatis dengan format <code>OPNAME-YYYYMMDD-NNNNN</code>.</li>
+</ul>
+
+<h3>10.2 Membuat Stock Opname Baru</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;+ Stock Opname Baru&rdquo;</b>.</li>
+  <li>Form detail akan menampilkan seluruh produk: <b>kode</b>, <b>nama</b>, <b>stok sistem</b>, <b>stok fisik</b> (kolom input), dan <b>selisih</b> (terhitung otomatis).</li>
+  <li>Isi kolom <b>stok fisik</b> sesuai hasil penghitungan fisik di gudang/toko.</li>
+  <li>Selisih akan terhitung otomatis: positif (+) jika stok fisik lebih banyak, negatif (-) jika kurang.</li>
+  <li>Isi <b>catatan</b> (opsional) untuk keterangan stock opname.</li>
+  <li>Klik <b>Simpan</b>. Stok produk akan langsung disesuaikan ke stok fisik.</li>
+</ol>
+<div class="callout warning">
+  <b class="label">PERHATIAN</b>
+  Stock opname bersifat <b>final</b>. Setelah disimpan, stok produk akan langsung berubah sesuai stok fisik yang Anda masukkan. Pastikan data stok fisik sudah benar.
+</div>
+
+<!-- ================= BAB 11 ================= -->
+<h2 class="chapter"><span class="num">11.</span>Rekap Penjualan (Laporan)</h2>
+<p>Menu <span class="menu-path">REKAP PENJUALAN</span> menyediakan laporan lengkap mengenai performa penjualan toko dalam periode tertentu.</p>
+
+<h3>11.1 Filter Periode</h3>
+<ol class="steps">
+  <li>Pilih tanggal <b>dari</b> dan tanggal <b>sampai</b> pada kolom filter.</li>
+  <li>Klik tombol <b>Terapkan</b> atau tunggu data dimuat otomatis.</li>
+</ol>
+
+<h3>11.2 Ringkasan Laporan</h3>
+<table>
+  <tr><th style="width:35%;">Metrik</th><th>Keterangan</th></tr>
+  <tr><td><b>Total Omzet</b></td><td>Total nilai penjualan (jumlah transaksi &times; total harga) dalam periode.</td></tr>
+  <tr><td><b>Laba Kotor</b></td><td>Selisih antara harga jual dan harga beli dari seluruh produk yang terjual.</td></tr>
+  <tr><td><b>Jumlah Transaksi</b></td><td>Total transaksi yang terjadi dalam periode.</td></tr>
+  <tr><td><b>Rata-rata per Hari</b></td><td>Total omzet dibagi jumlah hari dalam periode.</td></tr>
+</table>
+
+<h3>11.3 Detail Laporan</h3>
+<ul>
+  <li><b>Rekap per Hari</b> &mdash; jumlah transaksi dan total omzet per hari dalam periode.</li>
+  <li><b>Rekap per Kasir</b> &mdash; jumlah transaksi dan total omzet per akun kasir.</li>
+  <li><b>10 Produk Terlaris</b> &mdash; produk dengan jumlah penjualan terbanyak.</li>
+</ul>
+
+<h3>11.4 Export &amp; Cetak</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;Export CSV&rdquo;</b> untuk mengunduh laporan dalam format CSV (UTF-8 BOM, kompatibel dengan Excel Indonesia).</li>
+  <li>Klik tombol <b>&ldquo;Cetak&rdquo;</b> untuk mencetak laporan langsung dari browser.</li>
+</ol>
+
+<!-- ================= BAB 12 ================= -->
+<h2 class="chapter"><span class="num">12.</span>Manajemen User</h2>
+<p>Menu <span class="menu-path">USER</span> digunakan untuk mengelola akun pengguna/kasir yang dapat mengakses aplikasi.</p>
+
+<h3>12.1 Melihat Daftar User</h3>
+<ul>
+  <li>Tabel menampilkan: <b>No</b>, <b>Nama</b>, <b>Email</b>, dan <b>Aksi</b>.</li>
+  <li>Hanya admin yang dapat mengakses menu ini.</li>
+</ul>
+
+<h3>12.2 Menambah User</h3>
+<ol class="steps">
+  <li>Klik tombol <b>&ldquo;+ Tambah User&rdquo;</b>.</li>
+  <li>Isi <b>Nama</b>, <b>Email</b>, <b>Password</b>, dan <b>Konfirmasi Password</b>.</li>
+  <li>Klik <b>Simpan</b>.</li>
+</ol>
+
+<h3>12.3 Mengubah User</h3>
+<ol class="steps">
+  <li>Klik ikon <b>pensil (kuning)</b> pada baris user.</li>
+  <li>Perbarui data yang diperlukan.</li>
+  <li>Klik <b>Update</b>.</li>
+</ol>
+
+<h3>12.4 Menghapus User</h3>
+<ol class="steps">
+  <li>Klik ikon <b>tempat sampah (merah)</b> pada baris user.</li>
+  <li>Konfirmasi penghapusan.</li>
+</ol>
+<div class="callout danger">
+  <b class="label">PENTING</b>
+  Anda <b>tidak bisa menghapus akun sendiri</b>. Jika ingin menghapus akun yang sedang login, minta admin lain yang melakukannya.
+</div>
+
+<!-- ================= BAB 13 ================= -->
+<h2 class="chapter"><span class="num">13.</span>Pengaturan Aplikasi</h2>
+<p>Menu <span class="menu-path">PENGATURAN</span> digunakan untuk mengkonfigurasi pengaturan umum aplikasi kasir.</p>
+
+<h3>13.1 Pengaturan Toko</h3>
+<table>
+  <tr><th style="width:28%;">Field</th><th>Keterangan</th></tr>
+  <tr><td><b>Nama Toko</b></td><td>Nama toko yang tampil di struk (default: Toko Sabar Subur).</td></tr>
+  <tr><td><b>Alamat Toko</b></td><td>Alamat toko yang tampil di struk.</td></tr>
+  <tr><td><b>No. Telp</b></td><td>Nomor telepon toko yang tampil di struk.</td></tr>
+</table>
+
+<h3>13.2 Pengaturan Struk</h3>
+<table>
+  <tr><th style="width:28%;">Field</th><th>Pilihan</th><th>Keterangan</th></tr>
+  <tr><td><b>Ukuran Kertas</b></td><td>Auto, 35mm, 58mm Presisi, 32 Kolom, 40 Kolom, 58mm, 80mm</td><td>Menyesuaikan tampilan struk dengan ukuran kertas printer thermal Anda. Mode kolom (32/40) menghasilkan struk monospace teks murni.</td></tr>
+  <tr><td><b>Panjang Kertas</b></td><td>Auto, 100mm, 150mm, 200mm, 250mm, 297mm</td><td>Menyesuaikan panjang struk. Auto akan menyesuaikan dengan konten.</td></tr>
+</table>
+
+<h3>13.3 Fitur Stok</h3>
+<ul>
+  <li><b>Aktifkan fitur stok</b> &mdash; toggle untuk mengaktifkan/menonaktifkan fitur stok.</li>
+  <li>Jika <b>aktif</b>: kolom stok tampil di kasir, validasi stok berlaku, menu Stock Opname muncul di sidebar.</li>
+  <li>Jika <b>nonaktif</b>: produk bisa dijual tanpa batasan stok, menu Stock Opname tidak muncul.</li>
+</ul>
+<div class="callout tip">
+  <b class="label">TIPS</b>
+  Aktifkan fitur stok jika toko Anda memerlukan pencatatan stok yang akurat. Nonaktifkan jika toko hanya menjual produk digital atau jasa yang tidak memerlukan pencatatan stok fisik.
+</div>
+
+<!-- ================= BAB 14 ================= -->
+<h2 class="chapter"><span class="num">14.</span>Tips &amp; Troubleshooting</h2>
+
+<table>
+  <tr><th style="width:38%;">Masalah</th><th>Solusi</th></tr>
+  <tr><td>Tidak bisa login</td><td>Pastikan email &amp; password benar. Perhatikan huruf besar/kecil pada password. Jika tetap gagal, hubungi administrator untuk reset akun.</td></tr>
+  <tr><td>Produk tidak muncul di halaman Kasir</td><td>Produk dengan stok 0 disembunyikan dari katalog kasir. Tambah stok produk melalui menu <b>Produk</b> &rarr; edit &rarr; perbarui kolom Stok.</td></tr>
+  <tr><td>Pesan &ldquo;Stok tidak mencukupi!&rdquo;</td><td>Jumlah yang diminta melebihi stok tersedia. Kurangi quantity atau tambah stok produk.</td></tr>
+  <tr><td>Pesan &ldquo;Jumlah bayar kurang!&rdquo;</td><td>Uang yang diinput pembeli lebih kecil dari total belanja. Perbaiki angka pada kolom Bayar.</td></tr>
+  <tr><td>Gagal simpan produk: kode sudah ada</td><td>Kode produk harus unik. Gunakan kode lain atau ubah kode produk lama.</td></tr>
+  <tr><td>Struk tidak tercetak</td><td>Pastikan printer terhubung dan dipilih pada dialog cetak browser. Coba cetak ulang dari Riwayat Transaksi.</td></tr>
+  <tr><td>Menu Stock Opname tidak muncul</td><td>Aktifkan fitur stok di menu <b>Pengaturan</b>.</td></tr>
+  <tr><td>Scanner barcode tidak berfungsi</td><td>Pastikan browser memiliki izin akses kamera. Gunakan HTTPS atau localhost untuk mengizinkan akses kamera.</td></tr>
+  <tr><td>Halaman terasa lambat</td><td>Refresh browser (F5). Jika berlanjut, periksa koneksi ke server/jaringan toko.</td></tr>
+</table>
+
+<h3>Praktik Baik Sehari-hari</h3>
+<ul>
+  <li>Lakukan <b>stock opname</b> rutin dan sesuaikan stok di menu Produk agar data akurat.</li>
+  <li>Gunakan kode produk/barcode yang konsisten agar scanning di kasir cepat.</li>
+  <li>Logout dari aplikasi di akhir shift dan tutup laporan harian dengan memeriksa <b>Pendapatan Hari Ini</b> di Dashboard.</li>
+  <li>Cek <b>Rekap Penjualan</b> secara berkala untuk memantau omzet dan laba toko.</li>
+  <li>Backup database secara berkala (ditangani administrator/pengembang).</li>
+</ul>
+
+<p class="footer-note">Dokumen Panduan Pengguna &mdash; Toko Sabar Subur Kasir App &bull; Versi 2.0 &bull; Agustus 2026</p>
+
+</body>
+</html>
