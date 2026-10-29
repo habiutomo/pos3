@@ -200,11 +200,6 @@
                     <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </button>
             </form>
-
-            <div class="mt-7 fade-up delay-4 flex items-center justify-center gap-2.5 bg-white/5 border border-white/10 text-gray-300 px-4 py-3 rounded-xl text-xs">
-                <i class="fas fa-key text-emerald-400"></i>
-                <p><strong class="text-white">Akun demo:</strong> admin@kasir.com &nbsp;&middot;&nbsp; password</p>
-            </div>
         </div>
     </div>
 
